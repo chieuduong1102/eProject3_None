@@ -1,0 +1,42 @@
+﻿@model eProject3_Verhicle_Management.Models.CurrencyConversion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CurrencyConversion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FromCurrency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromCurrency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToCurrency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToCurrency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ratio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ratio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

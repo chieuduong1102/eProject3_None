@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.UrlImage)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vehicle.VehicleName)
+            @Html.DisplayNameFor(model => model.Product.ProductName)
         </th>
         <th></th>
     </tr>
@@ -26,7 +26,7 @@
             @Html.DisplayFor(modelItem => item.UrlImage)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Vehicle.VehicleName)
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

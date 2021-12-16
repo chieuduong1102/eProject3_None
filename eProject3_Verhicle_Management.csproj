@@ -141,19 +141,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BrandsController.cs" />
-    <Compile Include="Controllers\CurrencyConversionsController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\Dashboard\BrandsController.cs" />
+    <Compile Include="Controllers\Dashboard\CurrencyConversionsController.cs" />
+    <Compile Include="Controllers\Dashboard\CustomersController.cs" />
+    <Compile Include="Controllers\Dashboard\DepartmentsController.cs" />
+    <Compile Include="Controllers\Dashboard\EmployeesController.cs" />
+    <Compile Include="Controllers\Dashboard\ImagesController.cs" />
+    <Compile Include="Controllers\Dashboard\OrderDetailsController.cs" />
+    <Compile Include="Controllers\Dashboard\OrdersController.cs" />
+    <Compile Include="Controllers\Dashboard\ProductsController.cs" />
+    <Compile Include="Controllers\Dashboard\ProductTypesController.cs" />
+    <Compile Include="Controllers\Dashboard\ShowroomsController.cs" />
+    <Compile Include="Controllers\Dashboard\WarehousesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
-    <Compile Include="Controllers\OrderDetailsController.cs" />
-    <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\ShowroomsController.cs" />
-    <Compile Include="Controllers\VehiclesController.cs" />
-    <Compile Include="Controllers\VehicleTypesController.cs" />
-    <Compile Include="Controllers\WarehousesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,16 +196,13 @@
     <Compile Include="Models\OrderDetail.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductType.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Showroom.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vehicle.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VehicleType.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Warehouse.cs">
@@ -224,8 +221,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\EntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityDataModel.Context.cs</LastGenOutput>
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>EntityDataModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\EntityDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -296,31 +293,31 @@
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Edit.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
-    <Content Include="Views\OrderDetails\Create.cshtml" />
-    <Content Include="Views\OrderDetails\Delete.cshtml" />
-    <Content Include="Views\OrderDetails\Details.cshtml" />
-    <Content Include="Views\OrderDetails\Edit.cshtml" />
-    <Content Include="Views\OrderDetails\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\OrderDetails\Create.cshtml" />
+    <Content Include="Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Views\OrderDetails\Details.cshtml" />
+    <Content Include="Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Views\OrderDetails\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\ProductTypes\Create.cshtml" />
+    <Content Include="Views\ProductTypes\Delete.cshtml" />
+    <Content Include="Views\ProductTypes\Details.cshtml" />
+    <Content Include="Views\ProductTypes\Edit.cshtml" />
+    <Content Include="Views\ProductTypes\Index.cshtml" />
     <Content Include="Views\Showrooms\Create.cshtml" />
     <Content Include="Views\Showrooms\Delete.cshtml" />
     <Content Include="Views\Showrooms\Details.cshtml" />
     <Content Include="Views\Showrooms\Edit.cshtml" />
     <Content Include="Views\Showrooms\Index.cshtml" />
-    <Content Include="Views\Vehicles\Create.cshtml" />
-    <Content Include="Views\Vehicles\Delete.cshtml" />
-    <Content Include="Views\Vehicles\Details.cshtml" />
-    <Content Include="Views\Vehicles\Edit.cshtml" />
-    <Content Include="Views\Vehicles\Index.cshtml" />
-    <Content Include="Views\VehicleTypes\Create.cshtml" />
-    <Content Include="Views\VehicleTypes\Delete.cshtml" />
-    <Content Include="Views\VehicleTypes\Details.cshtml" />
-    <Content Include="Views\VehicleTypes\Edit.cshtml" />
-    <Content Include="Views\VehicleTypes\Index.cshtml" />
     <Content Include="Views\Warehouses\Create.cshtml" />
     <Content Include="Views\Warehouses\Delete.cshtml" />
     <Content Include="Views\Warehouses\Details.cshtml" />
@@ -329,6 +326,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\UI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -15,10 +15,10 @@
             @Html.DisplayNameFor(model => model.Quantily)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Showroom.ShowroomName)
+            @Html.DisplayNameFor(model => model.Product.ProductName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vehicle.VehicleName)
+            @Html.DisplayNameFor(model => model.Showroom.ShowroomName)
         </th>
         <th></th>
     </tr>
@@ -29,10 +29,10 @@
             @Html.DisplayFor(modelItem => item.Quantily)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Showroom.ShowroomName)
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Vehicle.VehicleName)
+            @Html.DisplayFor(modelItem => item.Showroom.ShowroomName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

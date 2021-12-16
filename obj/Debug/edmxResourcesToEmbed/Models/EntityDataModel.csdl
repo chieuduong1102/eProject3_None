@@ -7,7 +7,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="UrlLogo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Vehicles" Relationship="Self.FK__Vehicles__Vehicl__29572725" FromRole="Brands" ToRole="Vehicles" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__BrandId__29572725" FromRole="Brand" ToRole="Product" />
   </EntityType>
   <EntityType Name="CurrencyConversion">
     <Key>
@@ -29,7 +29,7 @@
     <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Levels" Type="Int32" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Customer__3F466844" FromRole="Customers" ToRole="Orders" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__CustomerI__3F466844" FromRole="Customer" ToRole="Order" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
@@ -37,7 +37,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Depar__3B75D760" FromRole="Departments" ToRole="Employees" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Depart__3B75D760" FromRole="Department" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -52,30 +52,17 @@
     <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <Property Name="ShowroomId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Department" Relationship="Self.FK__Employees__Depar__3B75D760" FromRole="Employees" ToRole="Departments" />
-    <NavigationProperty Name="Showroom" Relationship="Self.FK__Employees__Showr__3C69FB99" FromRole="Employees" ToRole="Showrooms" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Employee__Depart__3B75D760" FromRole="Employee" ToRole="Department" />
+    <NavigationProperty Name="Showroom" Relationship="Self.FK__Employee__Showro__3C69FB99" FromRole="Employee" ToRole="Showroom" />
   </EntityType>
   <EntityType Name="Image">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
     <Property Name="UrlImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Vehicle" Relationship="Self.FK__Images__VehicleI__2C3393D0" FromRole="Images" ToRole="Vehicles" />
-  </EntityType>
-  <EntityType Name="OrderDetail">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderId" Type="Int32" Nullable="false" />
-    <Property Name="VehicleId" Type="Int32" Nullable="false" />
-    <Property Name="Quantily" Type="Int32" Nullable="false" />
-    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__4222D4EF" FromRole="OrderDetails" ToRole="Orders" />
-    <NavigationProperty Name="Vehicle" Relationship="Self.FK__OrderDeta__Vehic__4316F928" FromRole="OrderDetails" ToRole="Vehicles" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Image__ProductId__2C3393D0" FromRole="Image" ToRole="Product" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -87,9 +74,51 @@
     <Property Name="DeliveryAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="CreatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UpdatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="StatusOrder" Type="Int32" />
-    <NavigationProperty Name="Customer" Relationship="Self.FK__Orders__Customer__3F466844" FromRole="Orders" ToRole="Customers" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__4222D4EF" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Order__CustomerI__3F466844" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__4222D4EF" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Quantily" Type="Int32" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__4222D4EF" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__4316F928" FromRole="OrderDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
+    <Property Name="BrandId" Type="Int32" Nullable="false" />
+    <Property Name="YearOfManufacture" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Seats" Type="Int32" />
+    <Property Name="TransmissionType" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Brand" Relationship="Self.FK__Product__BrandId__29572725" FromRole="Product" ToRole="Brand" />
+    <NavigationProperty Name="Images" Relationship="Self.FK__Image__ProductId__2C3393D0" FromRole="Product" ToRole="Image" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__4316F928" FromRole="Product" ToRole="OrderDetail" />
+    <NavigationProperty Name="ProductType" Relationship="Self.FK__Product__Product__286302EC" FromRole="Product" ToRole="ProductType" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.FK__Warehouse__Produ__30F848ED" FromRole="Product" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK__Product__Product__286302EC" FromRole="ProductType" ToRole="Product" />
   </EntityType>
   <EntityType Name="Showroom">
     <Key>
@@ -101,175 +130,137 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Showr__3C69FB99" FromRole="Showrooms" ToRole="Employees" />
-    <NavigationProperty Name="Warehouses" Relationship="Self.FK__Warehouse__Showr__31EC6D26" FromRole="Showrooms" ToRole="Warehouses" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="Vehicle">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="VehicleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
-    <Property Name="VehicleBrandId" Type="Int32" Nullable="false" />
-    <Property Name="YearOfManufacture" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Seats" Type="Int32" />
-    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="VehicleStatus" Type="Int32" Nullable="false" />
-    <Property Name="CreatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="UpdatedDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Brand" Relationship="Self.FK__Vehicles__Vehicl__29572725" FromRole="Vehicles" ToRole="Brands" />
-    <NavigationProperty Name="Images" Relationship="Self.FK__Images__VehicleI__2C3393D0" FromRole="Vehicles" ToRole="Images" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Vehic__4316F928" FromRole="Vehicles" ToRole="OrderDetails" />
-    <NavigationProperty Name="VehicleType" Relationship="Self.FK__Vehicles__Vehicl__286302EC" FromRole="Vehicles" ToRole="VehicleTypes" />
-    <NavigationProperty Name="Warehouses" Relationship="Self.FK__Warehouse__Vehic__30F848ED" FromRole="Vehicles" ToRole="Warehouses" />
-  </EntityType>
-  <EntityType Name="VehicleType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="VehicleType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Vehicles" Relationship="Self.FK__Vehicles__Vehicl__286302EC" FromRole="VehicleTypes" ToRole="Vehicles" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Showro__3C69FB99" FromRole="Showroom" ToRole="Employee" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.FK__Warehouse__Showr__31EC6D26" FromRole="Showroom" ToRole="Warehouse" />
   </EntityType>
   <EntityType Name="Warehouse">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
     <Property Name="ShowroomId" Type="Int32" Nullable="false" />
     <Property Name="Quantily" Type="Int32" />
-    <NavigationProperty Name="Showroom" Relationship="Self.FK__Warehouse__Showr__31EC6D26" FromRole="Warehouses" ToRole="Showrooms" />
-    <NavigationProperty Name="Vehicle" Relationship="Self.FK__Warehouse__Vehic__30F848ED" FromRole="Warehouses" ToRole="Vehicles" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Warehouse__Produ__30F848ED" FromRole="Warehouse" ToRole="Product" />
+    <NavigationProperty Name="Showroom" Relationship="Self.FK__Warehouse__Showr__31EC6D26" FromRole="Warehouse" ToRole="Showroom" />
   </EntityType>
-  <Association Name="FK__Vehicles__Vehicl__29572725">
-    <End Role="Brands" Type="Self.Brand" Multiplicity="1" />
-    <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="*" />
+  <Association Name="FK__Product__BrandId__29572725">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Brands">
+      <Principal Role="Brand">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Vehicles">
-        <PropertyRef Name="VehicleBrandId" />
+      <Dependent Role="Product">
+        <PropertyRef Name="BrandId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__Customer__3F466844">
-    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+  <Association Name="FK__Order__CustomerI__3F466844">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Customers">
+      <Principal Role="Customer">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Orders">
+      <Dependent Role="Order">
         <PropertyRef Name="CustomerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employees__Depar__3B75D760">
-    <End Role="Departments" Type="Self.Department" Multiplicity="1" />
-    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+  <Association Name="FK__Employee__Depart__3B75D760">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Departments">
+      <Principal Role="Department">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Employees">
+      <Dependent Role="Employee">
         <PropertyRef Name="DepartmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employees__Showr__3C69FB99">
-    <End Role="Showrooms" Type="Self.Showroom" Multiplicity="1" />
-    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+  <Association Name="FK__Employee__Showro__3C69FB99">
+    <End Role="Showroom" Type="Self.Showroom" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Showrooms">
+      <Principal Role="Showroom">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Employees">
+      <Dependent Role="Employee">
         <PropertyRef Name="ShowroomId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Images__VehicleI__2C3393D0">
-    <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="1" />
-    <End Role="Images" Type="Self.Image" Multiplicity="*" />
+  <Association Name="FK__Image__ProductId__2C3393D0">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Vehicles">
+      <Principal Role="Product">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Images">
-        <PropertyRef Name="VehicleId" />
+      <Dependent Role="Image">
+        <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__OrderDeta__Order__4222D4EF">
-    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Orders">
+      <Principal Role="Order">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="OrderDetails">
+      <Dependent Role="OrderDetail">
         <PropertyRef Name="OrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Vehic__4316F928">
-    <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+  <Association Name="FK__OrderDeta__Produ__4316F928">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Vehicles">
+      <Principal Role="Product">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="VehicleId" />
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Product__286302EC">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Warehouse__Produ__30F848ED">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Warehouse__Showr__31EC6D26">
-    <End Role="Showrooms" Type="Self.Showroom" Multiplicity="1" />
-    <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="*" />
+    <End Role="Showroom" Type="Self.Showroom" Multiplicity="1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Showrooms">
+      <Principal Role="Showroom">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Warehouses">
+      <Dependent Role="Warehouse">
         <PropertyRef Name="ShowroomId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Vehicles__Vehicl__286302EC">
-    <End Role="VehicleTypes" Type="Self.VehicleType" Multiplicity="1" />
-    <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VehicleTypes">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Vehicles">
-        <PropertyRef Name="VehicleTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Warehouse__Vehic__30F848ED">
-    <End Role="Vehicles" Type="Self.Vehicle" Multiplicity="1" />
-    <End Role="Warehouses" Type="Self.Warehouse" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Vehicles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Warehouses">
-        <PropertyRef Name="VehicleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -280,52 +271,51 @@
     <EntitySet Name="Departments" EntityType="Self.Department" />
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="Images" EntityType="Self.Image" />
-    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
     <EntitySet Name="Showrooms" EntityType="Self.Showroom" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
-    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
     <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
-    <AssociationSet Name="FK__Vehicles__Vehicl__29572725" Association="Self.FK__Vehicles__Vehicl__29572725">
-      <End Role="Brands" EntitySet="Brands" />
-      <End Role="Vehicles" EntitySet="Vehicles" />
+    <AssociationSet Name="FK__Product__BrandId__29572725" Association="Self.FK__Product__BrandId__29572725">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__Customer__3F466844" Association="Self.FK__Orders__Customer__3F466844">
-      <End Role="Customers" EntitySet="Customers" />
-      <End Role="Orders" EntitySet="Orders" />
+    <AssociationSet Name="FK__Order__CustomerI__3F466844" Association="Self.FK__Order__CustomerI__3F466844">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employees__Depar__3B75D760" Association="Self.FK__Employees__Depar__3B75D760">
-      <End Role="Departments" EntitySet="Departments" />
-      <End Role="Employees" EntitySet="Employees" />
+    <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="Self.FK__Employee__Depart__3B75D760">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Employee" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employees__Showr__3C69FB99" Association="Self.FK__Employees__Showr__3C69FB99">
-      <End Role="Showrooms" EntitySet="Showrooms" />
-      <End Role="Employees" EntitySet="Employees" />
+    <AssociationSet Name="FK__Employee__Showro__3C69FB99" Association="Self.FK__Employee__Showro__3C69FB99">
+      <End Role="Showroom" EntitySet="Showrooms" />
+      <End Role="Employee" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK__Images__VehicleI__2C3393D0" Association="Self.FK__Images__VehicleI__2C3393D0">
-      <End Role="Vehicles" EntitySet="Vehicles" />
-      <End Role="Images" EntitySet="Images" />
+    <AssociationSet Name="FK__Image__ProductId__2C3393D0" Association="Self.FK__Image__ProductId__2C3393D0">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Image" EntitySet="Images" />
     </AssociationSet>
     <AssociationSet Name="FK__OrderDeta__Order__4222D4EF" Association="Self.FK__OrderDeta__Order__4222D4EF">
-      <End Role="Orders" EntitySet="Orders" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Vehic__4316F928" Association="Self.FK__OrderDeta__Vehic__4316F928">
-      <End Role="Vehicles" EntitySet="Vehicles" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    <AssociationSet Name="FK__OrderDeta__Produ__4316F928" Association="Self.FK__OrderDeta__Produ__4316F928">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Product__286302EC" Association="Self.FK__Product__Product__286302EC">
+      <End Role="ProductType" EntitySet="ProductTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Warehouse__Produ__30F848ED" Association="Self.FK__Warehouse__Produ__30F848ED">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
     </AssociationSet>
     <AssociationSet Name="FK__Warehouse__Showr__31EC6D26" Association="Self.FK__Warehouse__Showr__31EC6D26">
-      <End Role="Showrooms" EntitySet="Showrooms" />
-      <End Role="Warehouses" EntitySet="Warehouses" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Vehicles__Vehicl__286302EC" Association="Self.FK__Vehicles__Vehicl__286302EC">
-      <End Role="VehicleTypes" EntitySet="VehicleTypes" />
-      <End Role="Vehicles" EntitySet="Vehicles" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Warehouse__Vehic__30F848ED" Association="Self.FK__Warehouse__Vehic__30F848ED">
-      <End Role="Vehicles" EntitySet="Vehicles" />
-      <End Role="Warehouses" EntitySet="Warehouses" />
+      <End Role="Showroom" EntitySet="Showrooms" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

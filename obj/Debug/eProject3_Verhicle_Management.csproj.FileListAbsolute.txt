@@ -85,3 +85,4 @@ C:\Users\chieu\source\repos\eProject3_Verhicle_Management\eProject3_Verhicle_Man
 C:\Users\chieu\source\repos\eProject3_Verhicle_Management\eProject3_Verhicle_Management\obj\Debug\eProject3_Verhicle_Management.csproj.CoreCompileInputs.cache
 C:\Users\chieu\source\repos\eProject3_Verhicle_Management\eProject3_Verhicle_Management\obj\Debug\eProject3_Verhicle_Management.dll
 C:\Users\chieu\source\repos\eProject3_Verhicle_Management\eProject3_Verhicle_Management\obj\Debug\eProject3_Verhicle_Management.pdb
+C:\Users\chieu\source\repos\eProject3_Verhicle_Management\eProject3_Verhicle_Management\obj\Debug\eProject3_Verhicle_Management.csproj.AssemblyReference.cache

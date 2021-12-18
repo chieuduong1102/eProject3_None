@@ -36,3 +36,17 @@
 #bg-logo-login {
     background-color: #d9eb3d !important;
 }
+
+.card-register{
+    margin-top: -70px !important;
+}
+
+#leftside-menu-container > div.simplebar-wrapper > div.simplebar-mask > div > div > div > ul > li.side-nav-item.menuitem-active > a,
+#sidebarEcommerce > ul > li.menuitem-active > a {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+body > div > div.content-page > div.container-fluid > button > a {
+    color: white !important;
+}

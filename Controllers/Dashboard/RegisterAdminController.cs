@@ -4,29 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace eProject3_Verhicle_Management.Controllers.UI
+namespace eProject3_Verhicle_Management.Controllers.Dashboard
 {
-    public class LoginController : Controller
+    public class RegisterAdminController : Controller
     {
-        // GET: Login
+        // GET: RegisterAdmin
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Login/Details/5
+        // GET: RegisterAdmin/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Login/Create
+        // GET: RegisterAdmin/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Login/Create
+        // POST: RegisterAdmin/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -42,13 +42,13 @@ namespace eProject3_Verhicle_Management.Controllers.UI
             }
         }
 
-        // GET: Login/Edit/5
+        // GET: RegisterAdmin/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Login/Edit/5
+        // POST: RegisterAdmin/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -64,13 +64,13 @@ namespace eProject3_Verhicle_Management.Controllers.UI
             }
         }
 
-        // GET: Login/Delete/5
+        // GET: RegisterAdmin/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Login/Delete/5
+        // POST: RegisterAdmin/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -261,7 +261,8 @@
     <Content Include="Content\images\icon_grid_over.png" />
     <Content Include="Content\images\icon_list.png" />
     <Content Include="Content\images\leftNav.png" />
-    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo1.png" />
+    <Content Include="Content\images\logofull.png" />
     <Content Include="Content\images\member1.png" />
     <Content Include="Content\images\member2.png" />
     <Content Include="Content\images\member3.png" />
@@ -472,6 +473,7 @@
     <Content Include="Views\Warehouses\Edit.cshtml" />
     <Content Include="Views\Warehouses\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

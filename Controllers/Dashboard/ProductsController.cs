@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using eProject3_Verhicle_Management.Constants;
 using eProject3_Verhicle_Management.Models;
+using eProject3_Verhicle_Management.Models.DTO;
 
 namespace eProject3_Verhicle_Management.Controllers.Dashboard
 {
@@ -18,7 +20,29 @@ namespace eProject3_Verhicle_Management.Controllers.Dashboard
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Brand).Include(p => p.ProductType);
-            return View(products.ToList());
+            List<ProductDTO> list = new List<ProductDTO>();
+            foreach (var x in products)
+            {
+                ProductDTO productDTO = new ProductDTO(
+                    x.Id,
+                    x.ProductName,
+                    db.ProductTypes.Where(p => p.Id == x.Id).Select(p => p.ProductType1).ToString(),
+                    db.Brands.Where(b => b.Id == x.Id).Select(b => b.BrandName).ToString(),
+                    x.YearOfManufacture,
+                    x.Seats,
+                    x.TransmissionType == (int)EnumTransmissionType.Manual
+                                        ? Enum.GetName(typeof(EnumTransmissionType), EnumTransmissionType.Manual)
+                                        : Enum.GetName(typeof(EnumTransmissionType), EnumTransmissionType.Automatic),
+                    x.Price,
+                    GenerateProductStatusFromEnum(x.Status),
+                    GenerateRaingOfProduct(x.Id),
+                    GenerateImagesOfProduct(x.Id),
+                    x.CreatedDate,
+                    x.UpdatedDate
+                );
+                list.Add(productDTO);
+            }
+            return View(list);
         }
 
         // GET: Products/Details/5
@@ -131,6 +155,31 @@ namespace eProject3_Verhicle_Management.Controllers.Dashboard
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private string GenerateProductStatusFromEnum(int productStatus)
+        {
+            switch (productStatus)
+            {
+                case (int)EnumProductStatus.Unavailable:
+                    return Enum.GetName(typeof(EnumProductStatus), EnumProductStatus.Unavailable);
+                case (int)EnumProductStatus.Available:
+                    return Enum.GetName(typeof(EnumProductStatus), EnumProductStatus.Available);
+                case (int)EnumProductStatus.Commingsoon:
+                    return Enum.GetName(typeof(EnumProductStatus), EnumProductStatus.Commingsoon);
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private int GenerateRaingOfProduct(int id)
+        {
+            return (int)db.Ratings.Where(x => x.ProductId == id).Select(x => x.Rating1).ToList().Sum();
+        }
+
+        private List<string> GenerateImagesOfProduct(int id)
+        {
+            return db.Images.Where(x => x.ProductId == id).Select(x => x.UrlImage).ToList();
         }
     }
 }

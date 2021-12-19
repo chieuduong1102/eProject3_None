@@ -20,6 +20,7 @@ namespace eProject3_Verhicle_Management.Models
             this.Images = new HashSet<Image>();
             this.OrderDetails = new HashSet<OrderDetail>();
             this.Warehouses = new HashSet<Warehouse>();
+            this.Ratings = new HashSet<Rating>();
         }
     
         public int Id { get; set; }
@@ -42,5 +43,7 @@ namespace eProject3_Verhicle_Management.Models
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Warehouse> Warehouses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

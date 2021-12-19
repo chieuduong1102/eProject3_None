@@ -37,5 +37,6 @@ namespace eProject3_Verhicle_Management.Models
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Showroom> Showrooms { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
     }
 }

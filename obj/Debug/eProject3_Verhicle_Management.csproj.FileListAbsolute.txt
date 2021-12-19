@@ -171,6 +171,8 @@ C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management
 C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\bin\System.Web.Http.WebHost.xml
 C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\obj\Debug\eProject3_Verhicle_Management.csproj.CoreCompileInputs.cache
-C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\obj\Debug\eProject3_Verhicle_Management.csproj.CopyComplete
 C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\obj\Debug\eProject3_Verhicle_Management.dll
 C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\obj\Debug\eProject3_Verhicle_Management.pdb
+C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\bin\AutoMapper.dll
+C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\bin\AutoMapper.xml
+C:\Users\chieu\OneDrive\Desktop\eProject3\eProject3\eProject3_Vehicle_Management\obj\Debug\eProject3_Verhicle_Management.csproj.AssemblyReference.cache

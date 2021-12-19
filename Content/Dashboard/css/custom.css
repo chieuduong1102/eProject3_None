@@ -50,3 +50,7 @@
 body > div > div.content-page > div.container-fluid > button > a {
     color: white !important;
 }
+
+.control-label {
+    margin-top: 10px !important;
+}
